@@ -2,14 +2,19 @@ spring:
   application:
     name: franchise-api
   r2dbc:
-    url: ${DB_URL:r2dbc:postgresql://localhost:5432/franchise}
+    url: r2dbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:franchise}
     username: ${DB_USER:franchise}
     password: ${DB_PASSWORD:franchise}
     pool:
       enabled: true
       initial-size: 5
       max-size: 20
-
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:franchise}
+    user: ${DB_USER:franchise}
+    password: ${DB_PASSWORD:franchise}
+    locations: classpath:db/migration
 management:
   endpoints:
     web:
