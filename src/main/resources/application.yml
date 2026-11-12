@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: franchise-api
+  r2dbc:
+    url: ${DB_URL:r2dbc:postgresql://localhost:5432/franchise}
+    username: ${DB_USER:franchise}
+    password: ${DB_PASSWORD:franchise}
+    pool:
+      enabled: true
+      initial-size: 5
+      max-size: 20
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
