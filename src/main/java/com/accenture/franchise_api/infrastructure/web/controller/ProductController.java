@@ -5,12 +5,15 @@ import com.accenture.franchise_api.application.useCase.UpdateProductNameUseCase;
 import com.accenture.franchise_api.application.useCase.UpdateProductStockUseCase;
 import com.accenture.franchise_api.infrastructure.web.dto.CreateProductRequest;
 import com.accenture.franchise_api.infrastructure.web.dto.ProductResponse;
+import com.accenture.franchise_api.infrastructure.web.dto.UpdateNameRequest;
 import com.accenture.franchise_api.infrastructure.web.dto.UpdateStockRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+@RestController
+@RequestMapping("/api")
 public class ProductController {
     private final AddProductToBranchUseCase addProductToBranchUseCase;
     private final UpdateProductNameUseCase updateProductNameUseCase;
@@ -36,7 +39,7 @@ public class ProductController {
 
     @PatchMapping("/products/{productId}/name")
     public Mono<ProductResponse>  updateName(
-            @Valid @RequestBody CreateProductRequest request,
+            @Valid @RequestBody UpdateNameRequest request,
             @PathVariable Long productId) {
         return updateProductNameUseCase.execute(productId, request.name())
                 .map(ProductResponse::fromDomain);

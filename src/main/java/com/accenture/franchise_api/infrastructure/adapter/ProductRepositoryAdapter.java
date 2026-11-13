@@ -5,9 +5,11 @@ import com.accenture.franchise_api.domain.model.Product;
 import com.accenture.franchise_api.domain.port.ProductRepository;
 import com.accenture.franchise_api.infrastructure.entity.ProductEntity;
 import com.accenture.franchise_api.infrastructure.repository.SpringDataProductRepository;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Component
 public class ProductRepositoryAdapter implements ProductRepository {
 
     private SpringDataProductRepository repository;

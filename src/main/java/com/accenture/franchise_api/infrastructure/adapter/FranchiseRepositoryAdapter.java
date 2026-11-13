@@ -5,8 +5,11 @@ import com.accenture.franchise_api.domain.port.FranchiseRepository;
 import com.accenture.franchise_api.infrastructure.entity.FranchiseEntity;
 import com.accenture.franchise_api.infrastructure.repository.SpringDataBranchRepository;
 import com.accenture.franchise_api.infrastructure.repository.SpringDataFranchiseRepository;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+@Component
 public class FranchiseRepositoryAdapter implements FranchiseRepository {
 
     private final SpringDataFranchiseRepository repository;

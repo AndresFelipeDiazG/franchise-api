@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@RestController
+@RequestMapping("/api/franchises")
 public class FranchiseController {
     private final CreateFranchiseUseCase createFranchiseUseCase;
     private final UpdateFranchiseNameUseCase updateFranchiseNameUseCase;
