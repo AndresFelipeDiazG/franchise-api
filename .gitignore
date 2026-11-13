@@ -35,3 +35,11 @@ build/
 ##env
 .env
 *.log
+
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+!*.tfvars.example

@@ -1,0 +1,5 @@
+aws_region   = "us-east-1"
+db_name      = "franchise"
+db_username  = "franchise"
+db_password  = "CambiaEstaClaveSegura123"
+docker_image = "tuusuario/franchise-api:1.0.0"
