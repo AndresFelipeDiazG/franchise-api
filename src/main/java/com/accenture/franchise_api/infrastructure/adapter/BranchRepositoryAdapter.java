@@ -4,8 +4,10 @@ import com.accenture.franchise_api.domain.model.Branch;
 import com.accenture.franchise_api.domain.port.BranchRepository;
 import com.accenture.franchise_api.infrastructure.entity.BranchEntity;
 import com.accenture.franchise_api.infrastructure.repository.SpringDataBranchRepository;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+@Component
 public class BranchRepositoryAdapter implements BranchRepository {
 
     private final SpringDataBranchRepository repository;

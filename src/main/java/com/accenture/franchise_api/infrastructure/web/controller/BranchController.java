@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+@RestController
+@RequestMapping("/api")
 public class BranchController {
      private final AddBranchToFranchiseUseCase addBranchToFranchiseUseCase;
      private final UpdateBranchNameUseCase updateBranchNameUseCase;

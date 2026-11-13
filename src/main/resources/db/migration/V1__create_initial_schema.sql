@@ -1,10 +1,10 @@
-CREATE TABLE franchises (
+CREATE TABLE IF NOT EXISTS franchises (
                             id BIGSERIAL PRIMARY KEY,
                             name VARCHAR(150) NOT NULL,
                             CONSTRAINT chk_franchise_name_not_blank CHECK (LENGTH(TRIM(name)) > 0)
 );
 
-CREATE TABLE branches (
+CREATE TABLE IF NOT EXISTS branches (
                           id BIGSERIAL PRIMARY KEY,
                           franchise_id BIGINT NOT NULL,
                           name VARCHAR(150) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE branches (
                           CONSTRAINT chk_branch_name_not_blank CHECK (LENGTH(TRIM(name)) > 0)
 );
 
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
                           id BIGSERIAL PRIMARY KEY,
                           branch_id BIGINT NOT NULL,
                           name VARCHAR(150) NOT NULL,

@@ -5,7 +5,9 @@ import com.accenture.franchise_api.domain.port.BranchRepository;
 import com.accenture.franchise_api.domain.port.FranchiseRepository;
 import com.accenture.franchise_api.domain.port.ProductRepository;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class BeanConfiguration {
     @Bean
     public CreateFranchiseUseCase createFranchiseUseCase(FranchiseRepository franchiseRepository) {

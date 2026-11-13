@@ -17,7 +17,7 @@ public interface SpringDataProductRepository extends ReactiveCrudRepository<Prod
             FROM branches b
             INNER JOIN products p ON p.branch_id = b.id
             WHERE b.franchise_id = :franchiseId
-            ORDER BY b.id, p.stock, DESC, p.id ASC
+            ORDER BY b.id ASC, p.stock DESC, p.id ASC
             """)
     Flux<BranchTopProduct> findTopProductsByBranchId(Long franchiseId);
 }
