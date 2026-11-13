@@ -6,7 +6,7 @@ import com.accenture.franchise_api.domain.port.ProductRepository;
 import reactor.core.publisher.Mono;
 
 public class UpdateProductStockUseCase {
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public UpdateProductStockUseCase(ProductRepository productRepository) {
         this.productRepository = productRepository;
