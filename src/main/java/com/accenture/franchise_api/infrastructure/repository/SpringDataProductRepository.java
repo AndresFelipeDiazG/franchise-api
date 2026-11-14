@@ -11,7 +11,7 @@ public interface SpringDataProductRepository extends ReactiveCrudRepository<Prod
             SELECT DISTINCT ON (b.id)
             b.id AS branch_id,
             b.name AS branch_name,
-            b.id AS product_id,
+            p.id AS product_id,
             p.name AS product_name,
             p.stock AS stock
             FROM branches b
