@@ -1,6 +1,7 @@
 package com.accenture.franchise_api.infrastructure.web.controller;
 
 import com.accenture.franchise_api.application.useCase.AddProductToBranchUseCase;
+import com.accenture.franchise_api.application.useCase.DeleteProductBranchUseCase;
 import com.accenture.franchise_api.application.useCase.UpdateProductNameUseCase;
 import com.accenture.franchise_api.application.useCase.UpdateProductStockUseCase;
 import com.accenture.franchise_api.infrastructure.web.dto.CreateProductRequest;
@@ -18,13 +19,16 @@ public class ProductController {
     private final AddProductToBranchUseCase addProductToBranchUseCase;
     private final UpdateProductNameUseCase updateProductNameUseCase;
     private final UpdateProductStockUseCase updateProductStockUseCase;
+    private final DeleteProductBranchUseCase deleteProductBranchUseCase;
 
     public ProductController(AddProductToBranchUseCase addProductToBranchUseCase,
                              UpdateProductNameUseCase updateProductNameUseCase,
-                             UpdateProductStockUseCase updateProductStockUseCase) {
+                             UpdateProductStockUseCase updateProductStockUseCase,
+                             DeleteProductBranchUseCase deleteProductBranchUseCase) {
         this.addProductToBranchUseCase = addProductToBranchUseCase;
         this.updateProductNameUseCase = updateProductNameUseCase;
         this.updateProductStockUseCase = updateProductStockUseCase;
+        this.deleteProductBranchUseCase = deleteProductBranchUseCase;
     }
 
     @PostMapping("/branches/{branchId}/products")
@@ -51,5 +55,11 @@ public class ProductController {
             @PathVariable Long productId) {
         return updateProductStockUseCase.execute(productId, request.stock())
                 .map(ProductResponse::fromDomain);
+    }
+
+    @DeleteMapping("/products/{productId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteProduct(@PathVariable Long productId) {
+        return deleteProductBranchUseCase.execute(productId);
     }
 }

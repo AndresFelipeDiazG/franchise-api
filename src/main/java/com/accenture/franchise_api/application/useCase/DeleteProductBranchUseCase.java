@@ -11,10 +11,9 @@ public class DeleteProductBranchUseCase {
         this.productRepository = productRepository;
     }
 
-    public Mono<Void> execute(Long branchId, Long  productId) {
+    public Mono<Void> execute(Long productId) {
         return productRepository.findById(productId)
-                .filter(p -> p.branchId().equals(branchId))
-                .switchIfEmpty(Mono.error(new ResourceNotFoundException(" Producto con ID: "+ productId +" no encontrado en la sucursal")))
-                .flatMap(p-> productRepository.deleteById(productId));
+                .switchIfEmpty(Mono.error(new ResourceNotFoundException("Producto no encontrado con ID: " + productId)))
+                .flatMap(product -> productRepository.deleteById(product.id()));
     }
 }
