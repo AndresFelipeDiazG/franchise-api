@@ -24,25 +24,23 @@ class DeleteProductFromBranchUseCaseTest {
     private DeleteProductBranchUseCase useCase;
 
     @Test
-    void shouldDeleteProductWhenItBelongsToBranch() {
+    void shouldDeleteProductWhenItExists() {
         Product product = new Product(100L, 10L, "Combo Familiar", 50);
 
         when(productRepository.findById(100L)).thenReturn(Mono.just(product));
         when(productRepository.deleteById(100L)).thenReturn(Mono.empty());
 
-        StepVerifier.create(useCase.execute(10L, 100L))
+        StepVerifier.create(useCase.execute(100L))
                 .verifyComplete();
 
         verify(productRepository).deleteById(100L);
     }
 
     @Test
-    void shouldEmitNotFoundWhenProductBelongsToAnotherBranch() {
-        Product productFromOtherBranch = new Product(100L, 20L, "Combo Familiar", 50);
+    void shouldEmitNotFoundWhenProductDoesNotExist() {
+        when(productRepository.findById(100L)).thenReturn(Mono.empty());
 
-        when(productRepository.findById(100L)).thenReturn(Mono.just(productFromOtherBranch));
-
-        StepVerifier.create(useCase.execute(100L, 10L))
+        StepVerifier.create(useCase.execute(100L))
                 .expectError(ResourceNotFoundException.class)
                 .verify();
 

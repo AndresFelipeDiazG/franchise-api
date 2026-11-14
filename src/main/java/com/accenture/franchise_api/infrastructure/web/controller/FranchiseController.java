@@ -36,7 +36,6 @@ public class FranchiseController {
     }
 
     @PatchMapping("/{franchiseId}/name")
-    @ResponseStatus(HttpStatus.CREATED)
     public Mono<FranchiseResponse> update(
             @PathVariable Long franchiseId,
             @Valid @RequestBody UpdateNameRequest request) {
